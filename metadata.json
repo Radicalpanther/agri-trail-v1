@@ -1,0 +1,8 @@
+{
+  "name": "AgriTrails",
+  "description": "Discover farm stays, seasonal traditions and rural experiences across India.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

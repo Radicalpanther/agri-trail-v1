@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriTrails — Stay closer to the land</title>
+  <meta name="description" content="Discover farm stays, seasonal traditions and rural experiences across India.">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="site-shell">
+    <!-- Header -->
+    <header class="site-header">
+      <button class="brand" type="button" onclick="showView('home')" aria-label="Go to AgriTrails home">
+        <span class="brand-mark">
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+          </svg>
+        </span>
+        <span>agri<span>trails</span></span>
+      </button>
+
+      <button class="mobile-toggle" type="button" id="mobile-toggle" aria-label="Toggle navigation">
+        <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+        </svg>
+        <svg id="close-icon" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+        </svg>
+      </button>
+
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item active" data-nav="home" onclick="showView('home')">Home</button>
+        <button type="button" class="nav-item" data-nav="explore" onclick="showView('explore')">Explore farms</button>
+        <button type="button" onclick="scrollToElement('produce')">Farm-fresh produce</button>
+        <button type="button" onclick="scrollToElement('story')">About us</button>
+      </nav>
+
+      <div class="header-actions">
+        <button class="farmer-link" type="button" onclick="showView('dashboard')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m10 11 11 .9a1 1 0 0 1 .8 1.1l-.665 4.158a1 1 0 0 1-.988.842H18"/><path d="M16 18h-5"/><path d="M18 5a1 1 0 0 0-1 1v5.573"/><circle cx="6" cy="17" r="4"/><circle cx="6" cy="17" r="1"/><circle cx="18" cy="17" r="1"/><circle cx="18" cy="17" r="3"/>
+          </svg>
+          Farmer portal
+        </button>
+        <button class="login-btn" type="button">
+          Login / Register
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- VIEW: HOME -->
+    <div id="view-home" class="view-pane">
+      <section class="hero">
+        <div class="hero-image"></div>
+        <div class="hero-content">
+          <h1>Come for the <em>land.</em><br>Stay for the stories.</h1>
+          <p>Discover working farms, seasonal traditions and warm village stays—directly from the people who call rural India home.</p>
+          <div class="hero-ctas">
+            <button class="primary-btn" type="button" onclick="showView('explore')">
+              Explore farm stays
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+              </svg>
+            </button>
+            <button class="text-btn" type="button" onclick="scrollToElement('story')">
+              How AgriTrails works
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search Bar -->
+      <div class="search-wrap">
+        <div class="search-bar">
+          <label id="search-where-label" onclick="handleWhereLabelClick(event)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Where</span>
+            <input type="text" id="search-where-input" value="All across India" placeholder="e.g. Coorg, Himachal, Ratnagiri, Munnar" autocomplete="off" onkeydown="if(event.key==='Enter')executeSearch()">
+            <div id="where-picker-popover" class="search-popover" style="display: none;" onclick="event.stopPropagation()">
+              <button type="button" class="popover-option" onclick="selectQuickWhere('All across India', event)">
+                <strong>All across India</strong>
+                <small>Explore stays across all states</small>
+              </button>
+              <button type="button" class="popover-option" onclick="selectQuickWhere('Himachal & North', event)">
+                <strong>Himachal Pradesh &amp; North</strong>
+                <small>Apple orchards &amp; mountain valleys (Kullu)</small>
+              </button>
+              <button type="button" class="popover-option" onclick="selectQuickWhere('Karnataka & South', event)">
+                <strong>Karnataka &amp; South</strong>
+                <small>Arabica coffee estates (Coorg, Madikeri)</small>
+              </button>
+              <button type="button" class="popover-option" onclick="selectQuickWhere('Kerala Spices & Tea', event)">
+                <strong>Kerala Spices &amp; Tea</strong>
+                <small>Cardamom hills &amp; plantations (Munnar)</small>
+              </button>
+              <button type="button" class="popover-option" onclick="selectQuickWhere('Maharashtra & Western Ghats', event)">
+                <strong>Maharashtra &amp; Western Ghats</strong>
+                <small>Alphonso mangoes &amp; Sahyadri (Ratnagiri)</small>
+              </button>
+            </div>
+          </label>
+          <label id="search-when-label" onclick="handleWhenLabelClick(event)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/>
+            </svg>
+            <span>When</span>
+            <input type="text" id="search-when-input" placeholder="Add dates" readonly style="cursor: pointer;">
+            <div id="when-picker-popover" class="search-popover" style="display: none;" onclick="event.stopPropagation()">
+              <button type="button" class="popover-option" onclick="selectQuickDate('This weekend', event)">
+                <strong>This weekend</strong>
+                <small>Upcoming Saturday – Sunday</small>
+              </button>
+              <button type="button" class="popover-option" onclick="selectQuickDate('Next weekend', event)">
+                <strong>Next weekend</strong>
+                <small>Relaxing 3-day farm break</small>
+              </button>
+              <button type="button" class="popover-option" onclick="selectQuickDate('Seasonal harvest season', event)">
+                <strong>Seasonal harvest season</strong>
+                <small>Best time for fruit &amp; crop picking</small>
+              </button>
+              <div class="popover-divider"></div>
+              <div class="popover-custom-date" onclick="event.stopPropagation()">
+                <small>Or pick specific date:</small>
+                <input type="date" id="search-custom-date" onchange="selectCustomDate(this.value, event)">
+              </div>
+            </div>
+          </label>
+          <label id="search-experience-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+            </svg>
+            <span>Experience</span>
+            <select id="search-experience-select" onchange="executeSearch()">
+              <option value="">Any activity</option>
+              <option value="Farm stay">Farm stay</option>
+              <option value="Fruit picking">Fruit picking</option>
+              <option value="Spice">Spice &amp; coffee trail</option>
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </label>
+          <button class="search-btn" type="button" onclick="executeSearch()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+            </svg>
+            <span>Search farms</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Intro Section -->
+      <section class="section intro-grid" id="story">
+        <div>
+          <p class="section-kicker">Travel that gives back</p>
+          <h2>Meet the hands<br>behind the harvest.</h2>
+        </div>
+        <div class="intro-copy">
+          <p>AgriTrails connects curious city travellers with farming families across India. Stay a little slower, learn something real, and make sure your money goes where it matters.</p>
+          <div class="stat-row">
+            <div><strong>100%</strong><span>direct to farmers</span></div>
+            <div><strong>48+</strong><span>local experiences</span></div>
+            <div><strong>4.9/5</strong><span>guest happiness</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Farm Section -->
+      <section class="section" id="farms">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Handpicked by us</p>
+            <h2>Find your kind of<br>weekend.</h2>
+          </div>
+          <button class="text-btn" type="button" onclick="showView('explore')">
+            View all farm stays
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+        <div class="farm-grid">
+          <!-- Kokan Roots -->
+          <article class="farm-card">
+            <div class="farm-image">
+              <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=900&q=85" alt="Kokan Roots Farmstay">
+              <span class="image-tag">Top rated</span>
+              <button class="heart-btn" type="button" aria-label="Save Kokan Roots Farmstay" onclick="toggleHeart(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="farm-body">
+              <div class="farm-title">
+                <h3>Kokan Roots Farmstay</h3>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                  4.9
+                </span>
+              </div>
+              <p class="muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                Ratnagiri, Maharashtra
+              </p>
+              <p class="farm-type">Farm stay · Hurda party</p>
+              <div class="farm-price">
+                <span><strong>₹2,850</strong> / guest</span>
+                <button type="button" onclick="selectAndBook(0)">
+                  View stay
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Aamrai Orchard Escape -->
+          <article class="farm-card">
+            <div class="farm-image">
+              <img src="/images/orchard_farmstay.jpg" alt="Aamrai Orchard Escape">
+              <span class="image-tag">Seasonal</span>
+              <button class="heart-btn" type="button" aria-label="Save Aamrai Orchard Escape" onclick="toggleHeart(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="farm-body">
+              <div class="farm-title">
+                <h3>Aamrai Orchard Escape</h3>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                  4.8
+                </span>
+              </div>
+              <p class="muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                Alphonso country, Ratnagiri
+              </p>
+              <p class="farm-type">Fruit picking · Orchard</p>
+              <div class="farm-price">
+                <span><strong>₹1,900</strong> / guest</span>
+                <button type="button" onclick="selectAndBook(1)">
+                  View stay
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Sahyadri Soil & Soul -->
+          <article class="farm-card">
+            <div class="farm-image">
+              <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=900&q=85" alt="Sahyadri Soil & Soul">
+              <span class="image-tag">New</span>
+              <button class="heart-btn" type="button" aria-label="Save Sahyadri Soil & Soul" onclick="toggleHeart(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="farm-body">
+              <div class="farm-title">
+                <h3>Sahyadri Soil & Soul</h3>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                  4.7
+                </span>
+              </div>
+              <p class="muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                Panchgani, Maharashtra
+              </p>
+              <p class="farm-type">Cattle tending · Village lunch</p>
+              <div class="farm-price">
+                <span><strong>₹1,650</strong> / guest</span>
+                <button type="button" onclick="selectAndBook(2)">
+                  View stay
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Produce Section -->
+      <section class="section produce-section" id="produce">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Take a little home</p>
+            <h2>Farm-fresh, waiting<br>for your arrival.</h2>
+          </div>
+          <p class="heading-note">Pre-order local produce and collect it at your farm stay. Your host gets the full value.</p>
+        </div>
+        <div class="produce-grid">
+          <article class="produce-card">
+            <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=85" alt="Organic jaggery">
+            <div>
+              <h3>Organic jaggery</h3>
+              <p>500 g · Kolhapur</p>
+              <strong>₹180</strong>
+            </div>
+            <button type="button" aria-label="Add Organic jaggery" onclick="alertAdded('Organic jaggery')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/>
+              </svg>
+            </button>
+          </article>
+
+          <article class="produce-card">
+            <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=85" alt="Ratnagiri Alphonso">
+            <div>
+              <h3>Ratnagiri Alphonso</h3>
+              <p>1 dozen · seasonal</p>
+              <strong>₹950</strong>
+            </div>
+            <button type="button" aria-label="Add Ratnagiri Alphonso" onclick="alertAdded('Ratnagiri Alphonso')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/>
+              </svg>
+            </button>
+          </article>
+
+          <article class="produce-card">
+            <img src="https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=600&q=85" alt="Village masala chai">
+            <div>
+              <h3>Village masala chai</h3>
+              <p>250 g · hand-ground</p>
+              <strong>₹220</strong>
+            </div>
+            <button type="button" aria-label="Add Village masala chai" onclick="alertAdded('Village masala chai')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/>
+              </svg>
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <!-- Promise Banner -->
+      <section class="promise">
+        <div class="promise-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="section-kicker">A fairer way forward</p>
+          <h2>Every booking helps a farm thrive.</h2>
+          <p>We keep it simple: no commissions hidden from farmers, no mass-produced experiences. Just a direct connection and a little more good in the world.</p>
+        </div>
+        <button class="outline-btn" type="button" onclick="showView('dashboard')">
+          List your farm
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </button>
+      </section>
+    </div>
+
+    <!-- VIEW: EXPLORE -->
+    <div id="view-explore" class="view-pane" hidden>
+      <section class="page-intro">
+        <div>
+          <p class="section-kicker">The good kind of getaway</p>
+          <h1>Explore farm stays.</h1>
+          <p>Trade the city rush for muddy feet, open skies and a table set by the people who grew it.</p>
+        </div>
+        <div class="result-count">
+          <strong id="explore-result-count">6</strong>
+          <span>stays &amp; experiences</span>
+        </div>
+      </section>
+
+      <div class="filter-row">
+        <button type="button" class="filter-btn filter-active" data-filter="all" onclick="filterFarms('all', this)">All India</button>
+        <button type="button" class="filter-btn" data-filter="north" onclick="filterFarms('north', this)">Himalayas &amp; North</button>
+        <button type="button" class="filter-btn" data-filter="west" onclick="filterFarms('west', this)">Western Ghats &amp; Coast</button>
+        <button type="button" class="filter-btn" data-filter="south" onclick="filterFarms('south', this)">Coffee &amp; Spice South</button>
+        <button type="button" class="filter-btn" data-filter="budget" onclick="filterFarms('budget', this)">Under ₹2,500</button>
+      </div>
+
+      <section class="section explore-section">
+        <div class="farm-grid" id="explore-farm-grid">
+          <!-- Kokan Roots -->
+          <article class="farm-card">
+            <div class="farm-image">
+              <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=900&q=85" alt="Kokan Roots Farmstay">
+              <span class="image-tag">Top rated</span>
+              <button class="heart-btn" type="button" aria-label="Save Kokan Roots Farmstay" onclick="toggleHeart(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="farm-body">
+              <div class="farm-title">
+                <h3>Kokan Roots Farmstay</h3>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                  4.9
+                </span>
+              </div>
+              <p class="muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                Ratnagiri, Maharashtra
+              </p>
+              <p class="farm-type">Farm stay · Hurda party</p>
+              <div class="farm-price">
+                <span><strong>₹2,850</strong> / guest</span>
+                <button type="button" onclick="selectAndBook(0)">
+                  View stay
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Aamrai Orchard Escape -->
+          <article class="farm-card">
+            <div class="farm-image">
+              <img src="/images/orchard_farmstay.jpg" alt="Aamrai Orchard Escape">
+              <span class="image-tag">Seasonal</span>
+              <button class="heart-btn" type="button" aria-label="Save Aamrai Orchard Escape" onclick="toggleHeart(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="farm-body">
+              <div class="farm-title">
+                <h3>Aamrai Orchard Escape</h3>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                  4.8
+                </span>
+              </div>
+              <p class="muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                Alphonso country, Ratnagiri
+              </p>
+              <p class="farm-type">Fruit picking · Orchard</p>
+              <div class="farm-price">
+                <span><strong>₹1,900</strong> / guest</span>
+                <button type="button" onclick="selectAndBook(1)">
+                  View stay
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Sahyadri Soil & Soul -->
+          <article class="farm-card">
+            <div class="farm-image">
+              <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=900&q=85" alt="Sahyadri Soil & Soul">
+              <span class="image-tag">Seasonal</span>
+              <button class="heart-btn" type="button" aria-label="Save Sahyadri Soil & Soul" onclick="toggleHeart(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="farm-body">
+              <div class="farm-title">
+                <h3>Sahyadri Soil & Soul</h3>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                  4.7
+                </span>
+              </div>
+              <p class="muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                Panchgani, Maharashtra
+              </p>
+              <p class="farm-type">Cattle tending · Village lunch</p>
+              <div class="farm-price">
+                <span><strong>₹1,650</strong> / guest</span>
+                <button type="button" onclick="selectAndBook(2)">
+                  View stay
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Whispering Pines Apple Orchard -->
+          <article class="farm-card">
+            <div class="farm-image">
+              <img src="https://images.unsplash.com/photo-1590682680695-43b964a3ae17?auto=format&fit=crop&w=900&q=85" alt="Whispering Pines Apple Orchard">
+              <span class="image-tag">Mountain stay</span>
+              <button class="heart-btn" type="button" aria-label="Save Whispering Pines Apple Orchard" onclick="toggleHeart(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="farm-body">
+              <div class="farm-title">
+                <h3>Whispering Pines Apple Orchard</h3>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                  4.9
+                </span>
+              </div>
+              <p class="muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                Kullu Valley, Himachal Pradesh
+              </p>
+              <p class="farm-type">Apple picking · Mountain trail</p>
+              <div class="farm-price">
+                <span><strong>₹2,400</strong> / guest</span>
+                <button type="button" onclick="selectAndBook(3)">
+                  View stay
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Coorg Arabica Coffee Estate -->
+          <article class="farm-card">
+            <div class="farm-image">
+              <img src="https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=900&q=85" alt="Coorg Arabica Coffee Estate">
+              <span class="image-tag">Top rated</span>
+              <button class="heart-btn" type="button" aria-label="Save Coorg Arabica Coffee Estate" onclick="toggleHeart(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="farm-body">
+              <div class="farm-title">
+                <h3>Coorg Arabica Coffee Estate</h3>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                  4.9
+                </span>
+              </div>
+              <p class="muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                Madikeri, Karnataka
+              </p>
+              <p class="farm-type">Coffee trail · Stream walk</p>
+              <div class="farm-price">
+                <span><strong>₹3,150</strong> / guest</span>
+                <button type="button" onclick="selectAndBook(4)">
+                  View stay
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Cardamom Hills Spice Haven -->
+          <article class="farm-card">
+            <div class="farm-image">
+              <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?auto=format&fit=crop&w=900&q=85" alt="Cardamom Hills Spice Haven">
+              <span class="image-tag">Seasonal</span>
+              <button class="heart-btn" type="button" aria-label="Save Cardamom Hills Spice Haven" onclick="toggleHeart(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="farm-body">
+              <div class="farm-title">
+                <h3>Cardamom Hills Spice Haven</h3>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                  4.8
+                </span>
+              </div>
+              <p class="muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                Munnar, Kerala
+              </p>
+              <p class="farm-type">Spice trail · Organic tea</p>
+              <div class="farm-price">
+                <span><strong>₹2,600</strong> / guest</span>
+                <button type="button" onclick="selectAndBook(5)">
+                  View stay
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW: BOOKING -->
+    <div id="view-booking" class="view-pane" hidden>
+      <section class="booking-page">
+        <button class="back-link" type="button" onclick="showView('explore')">
+          ← Back to farm stays
+        </button>
+        <div class="booking-layout">
+          <div>
+            <div class="booking-photo">
+              <img id="booking-farm-img" src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=900&q=85" alt="Farm photo">
+            </div>
+            <div class="booking-copy">
+              <p class="section-kicker">Your rural reset</p>
+              <h1 id="booking-farm-title">Kokan Roots Farmstay</h1>
+              <p class="muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span id="booking-farm-place">Ratnagiri, Maharashtra</span> ·
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                <span id="booking-farm-rating">4.9</span> (<span id="booking-farm-reviews">42</span> reviews)
+              </p>
+              <p>Wake up to birdsong, share a meal made from the morning harvest, and spend an unhurried day learning the rhythms of a real working farm.</p>
+              <div class="amenities">
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                  </svg>
+                  Organic meals
+                </span>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                  Sleeps 4
+                </span>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16.5 12"/>
+                  </svg>
+                  Flexible check-in
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Area -->
+          <div class="booking-form">
+            <div id="booking-form-content">
+              <div class="form-header">
+                <div>
+                  <p class="section-kicker">Reserve your stay</p>
+                  <h2>Make it a weekend.</h2>
+                </div>
+                <span><strong id="booking-farm-price">₹2,850</strong> / guest</span>
+              </div>
+              <form id="stay-booking-form" onsubmit="handleBookingSubmit(event)">
+                <div class="form-grid">
+                  <label>
+                    Full name
+                    <input type="text" required placeholder="Your name">
+                  </label>
+                  <label>
+                    Email address
+                    <input type="email" required placeholder="you@example.com">
+                  </label>
+                  <label>
+                    Check-in
+                    <input type="date" required id="booking-checkin-date">
+                  </label>
+                  <label>
+                    Guests
+                    <select>
+                      <option selected>2 guests</option>
+                      <option>3 guests</option>
+                      <option>4 guests</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="add-ons">
+                  <div class="add-on-heading">
+                    <div>
+                      <p class="section-kicker">Optional add-ons</p>
+                      <h3>Fill your basket</h3>
+                    </div>
+                    <span>Pickup at the farm</span>
+                  </div>
+                  <label class="addon-row">
+                    <input type="checkbox">
+                    <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=85" alt="Organic jaggery">
+                    <span>
+                      <strong>Organic jaggery</strong>
+                      <small>500 g · Kolhapur</small>
+                    </span>
+                    <b>₹180</b>
+                  </label>
+                  <label class="addon-row">
+                    <input type="checkbox">
+                    <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=85" alt="Ratnagiri Alphonso">
+                    <span>
+                      <strong>Ratnagiri Alphonso</strong>
+                      <small>1 dozen · seasonal</small>
+                    </span>
+                    <b>₹950</b>
+                  </label>
+                </div>
+                <button class="primary-btn submit-btn" type="submit">
+                  Request to book
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </button>
+                <p class="form-note">No payment today · Free cancellation up to 48 hours before arrival</p>
+              </form>
+            </div>
+
+            <!-- Success State -->
+            <div id="booking-success-state" class="success-state" style="display:none;">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>
+                </svg>
+              </div>
+              <h3>Request sent to your host.</h3>
+              <p>They will confirm availability within 24 hours. We'll email you the details.</p>
+              <button type="button" class="primary-btn" onclick="showView('explore')">Explore more stays</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW: DASHBOARD (Farmer portal) -->
+    <div id="view-dashboard" class="view-pane" hidden>
+      <section class="dashboard-page">
+        <div class="dashboard-head">
+          <div>
+            <p class="section-kicker">Farmer portal</p>
+            <h1>Good morning, Farmer.</h1>
+            <p>Here's what's happening with your farm this week.</p>
+          </div>
+          <button class="primary-btn" type="button" id="btn-add-listing" onclick="openAddListingModal()">
+            <span>+</span> Add a new listing
+          </button>
+        </div>
+
+        <div class="dashboard-stats">
+          <div>
+            <span class="stat-icon green">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>
+              </svg>
+            </span>
+            <span>
+              <strong>12</strong>
+              <small>upcoming guests</small>
+            </span>
+            <b>+18%</b>
+          </div>
+
+          <div>
+            <span class="stat-icon yellow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/>
+              </svg>
+            </span>
+            <span>
+              <strong>₹24,600</strong>
+              <small>this month's earnings</small>
+            </span>
+            <b>+12%</b>
+          </div>
+
+          <div>
+            <span class="stat-icon blue">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/>
+              </svg>
+            </span>
+            <span>
+              <strong>8</strong>
+              <small>produce orders</small>
+            </span>
+            <b>New</b>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- Active Farm Stays -->
+          <div class="dashboard-panel">
+            <div class="panel-title">
+              <div>
+                <p class="section-kicker">Your listings</p>
+                <h2>Active farm stays</h2>
+              </div>
+              <button class="text-btn" type="button" onclick="openAddListingModal()">
+                + Add stay
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+            <div id="dashboard-listings-list">
+              <div class="listing-row">
+                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=900&q=85" alt="Kokan Roots Farmstay">
+                <div>
+                  <h3>Kokan Roots Farmstay</h3>
+                  <p>Ratnagiri · 4 guests max</p>
+                  <span class="status-pill">Published</span>
+                </div>
+                <strong>₹2,850<small>/ guest</small></strong>
+                <button class="icon-only" type="button" aria-label="Edit listing">•••</button>
+              </div>
+              <div class="listing-row">
+                <img src="/images/orchard_farmstay.jpg" alt="Alphonso Orchard Walk">
+                <div>
+                  <h3>Alphonso Orchard Walk</h3>
+                  <p>Ratnagiri · 8 guests max</p>
+                  <span class="status-pill">Published</span>
+                </div>
+                <strong>₹950<small>/ guest</small></strong>
+                <button class="icon-only" type="button" aria-label="Edit listing">•••</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visitor Bookings -->
+          <div class="dashboard-panel">
+            <div class="panel-title">
+              <div>
+                <p class="section-kicker">Next up</p>
+                <h2>Visitor bookings</h2>
+              </div>
+              <button class="text-btn" type="button">
+                View calendar
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+            <div class="visitor-row">
+              <span class="date-block"><b>18</b><small>JUN</small></span>
+              <div>
+                <h3>Meera &amp; 3 guests</h3>
+                <p>Kokan Roots · 2 nights</p>
+              </div>
+              <span class="booking-status">Confirmed</span>
+            </div>
+            <div class="visitor-row">
+              <span class="date-block"><b>24</b><small>JUN</small></span>
+              <div>
+                <h3>Rohan Mehta</h3>
+                <p>Kokan Roots · 1 night</p>
+              </div>
+              <span class="booking-status pending">Pending</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inventory Panel -->
+        <div class="inventory-panel">
+          <div class="panel-title">
+            <div>
+              <p class="section-kicker">Farm-fresh add-ons</p>
+              <h2>Inventory at a glance</h2>
+            </div>
+            <button class="outline-btn" type="button">Update inventory</button>
+          </div>
+          <div class="inventory-grid">
+            <div>
+              <span>Mangoes</span>
+              <strong>42 <small>dozen</small></strong>
+              <div class="progress"><i style="width: 72%;"></i></div>
+              <em>Healthy stock</em>
+            </div>
+            <div>
+              <span>Organic jaggery</span>
+              <strong>18 <small>kg</small></strong>
+              <div class="progress"><i style="width: 45%;"></i></div>
+              <em class="low">Restock soon</em>
+            </div>
+            <div>
+              <span>Village masala chai</span>
+              <strong>30 <small>packs</small></strong>
+              <div class="progress"><i style="width: 58%;"></i></div>
+              <em>Healthy stock</em>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- MODAL: ADD A NEW LISTING -->
+    <div id="add-listing-modal" class="modal-overlay" aria-hidden="true" style="display: none;">
+      <div class="modal-backdrop" onclick="closeAddListingModal()"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-listing-title">
+        <div class="modal-header">
+          <div>
+            <p class="section-kicker">Farmer portal</p>
+            <h2 id="modal-listing-title">Add a new farm listing</h2>
+            <p class="modal-subtitle">Share your farm stay, seasonal harvest, or rural workshop with conscious travelers.</p>
+          </div>
+          <button type="button" class="modal-close" onclick="closeAddListingModal()" aria-label="Close modal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <form id="add-listing-form" onsubmit="handleAddListingSubmit(event)">
+          <div class="form-section">
+            <h3 class="form-section-title">1. Farm Details</h3>
+            <div class="form-grid">
+              <label>
+                Farm Stay / Experience Name *
+                <input type="text" id="new-farm-name" required placeholder="e.g. Sahyadri Spice Sanctuary">
+              </label>
+              <label>
+                Region &amp; State / District *
+                <select id="new-farm-location" required>
+                  <option value="" disabled selected>Select region / state across India</option>
+                  <optgroup label="Western India">
+                    <option value="Ratnagiri, Maharashtra">Ratnagiri, Maharashtra (Konkan Coast)</option>
+                    <option value="Sindhudurg, Maharashtra">Sindhudurg, Maharashtra (Malvan)</option>
+                    <option value="Pune / Junnar, Maharashtra">Pune / Junnar, Maharashtra</option>
+                    <option value="Nashik, Maharashtra">Nashik, Maharashtra (Grape Country)</option>
+                    <option value="Satara / Mahabaleshwar, Maharashtra">Satara / Mahabaleshwar, Maharashtra</option>
+                    <option value="Kolhapur, Maharashtra">Kolhapur, Maharashtra</option>
+                    <option value="Raigad / Alibaug, Maharashtra">Raigad / Alibaug, Maharashtra</option>
+                    <option value="Vidarbha / Nagpur, Maharashtra">Vidarbha / Nagpur, Maharashtra (Orange Belt)</option>
+                    <option value="Kutch / Saurashtra, Gujarat">Kutch / Saurashtra, Gujarat</option>
+                    <option value="Anand / Navsari, Gujarat">Anand / Navsari, Gujarat</option>
+                    <option value="Goa Hinterlands, Goa">Goa Hinterlands (Spice &amp; Cashew)</option>
+                  </optgroup>
+                  <optgroup label="Northern &amp; Himalayan India">
+                    <option value="Kullu &amp; Manali, Himachal Pradesh">Kullu &amp; Manali, Himachal Pradesh (Apple Orchard)</option>
+                    <option value="Shimla &amp; Kotgarh, Himachal Pradesh">Shimla &amp; Kotgarh, Himachal Pradesh</option>
+                    <option value="Dehradun &amp; Mussoorie, Uttarakhand">Dehradun &amp; Mussoorie, Uttarakhand</option>
+                    <option value="Nainital &amp; Kumaon, Uttarakhand">Nainital &amp; Kumaon, Uttarakhand</option>
+                    <option value="Amritsar &amp; Hoshiarpur, Punjab">Amritsar &amp; Hoshiarpur, Punjab (Mustard &amp; Wheat)</option>
+                    <option value="Karnal &amp; Kurukshetra, Haryana">Karnal &amp; Kurukshetra, Haryana</option>
+                    <option value="Pushkar &amp; Jaipur, Rajasthan">Pushkar &amp; Jaipur, Rajasthan</option>
+                    <option value="Kashmir Valley, Jammu &amp; Kashmir">Kashmir Valley, Jammu &amp; Kashmir (Saffron &amp; Walnut)</option>
+                  </optgroup>
+                  <optgroup label="Southern India">
+                    <option value="Coorg / Kodagu, Karnataka">Coorg / Kodagu, Karnataka (Coffee Estate)</option>
+                    <option value="Chikmagalur, Karnataka">Chikmagalur, Karnataka (Coffee &amp; Pepper)</option>
+                    <option value="Munnar &amp; Idukki, Kerala">Munnar &amp; Idukki, Kerala (Spice &amp; Tea)</option>
+                    <option value="Wayanad, Kerala">Wayanad, Kerala (Paddy &amp; Plantation)</option>
+                    <option value="Nilgiris &amp; Ooty, Tamil Nadu">Nilgiris &amp; Ooty, Tamil Nadu (Tea &amp; Herbs)</option>
+                    <option value="Pollachi, Tamil Nadu">Pollachi, Tamil Nadu (Coconut Groves)</option>
+                    <option value="Araku Valley, Andhra Pradesh">Araku Valley, Andhra Pradesh (Organic Coffee)</option>
+                  </optgroup>
+                  <optgroup label="Eastern &amp; North-Eastern India">
+                    <option value="Darjeeling &amp; Kalimpong, West Bengal">Darjeeling &amp; Kalimpong, West Bengal (Tea Gardens)</option>
+                    <option value="Sikkim Organic Belt, Sikkim">Sikkim Organic Belt (100% Organic Farming)</option>
+                    <option value="Meghalaya Hills, Meghalaya">Meghalaya Hills (Lakadong Turmeric &amp; Spices)</option>
+                    <option value="Jorhat &amp; Kaziranga, Assam">Jorhat &amp; Kaziranga, Assam (Tea &amp; Silk)</option>
+                    <option value="Ranchi &amp; Netarhat, Jharkhand">Ranchi &amp; Netarhat, Jharkhand</option>
+                    <option value="Koraput, Odisha">Koraput, Odisha (Indigenous Crops &amp; Millets)</option>
+                  </optgroup>
+                  <optgroup label="Central India">
+                    <option value="Hoshangabad / Pachmarhi, Madhya Pradesh">Hoshangabad / Pachmarhi, Madhya Pradesh</option>
+                    <option value="Bastar, Chhattisgarh">Bastar, Chhattisgarh (Forest &amp; Millets)</option>
+                  </optgroup>
+                  <optgroup label="Other Districts">
+                    <option value="Rural District, India">Other Rural District, India</option>
+                  </optgroup>
+                </select>
+              </label>
+              <label>
+                Experience Type *
+                <select id="new-farm-type" required>
+                  <option value="Farm stay · Organic harvest">Farm stay · Organic harvest</option>
+                  <option value="Fruit picking · Apple / Mango / Orange">Fruit picking · Apple / Mango / Orange orchard</option>
+                  <option value="Coffee &amp; Spice plantation trail">Coffee &amp; Spice plantation trail</option>
+                  <option value="Tea garden cottage &amp; tasting">Tea garden cottage &amp; tasting</option>
+                  <option value="Agro-camping · River &amp; forest trail">Agro-camping · River &amp; forest trail</option>
+                  <option value="Village culture &amp; Dairy farming">Village culture &amp; Dairy farming</option>
+                  <option value="Paddy fields &amp; Wetland experience">Paddy fields &amp; Wetland experience</option>
+                </select>
+              </label>
+              <label>
+                Category Badge
+                <select id="new-farm-tag">
+                  <option value="New listing">New listing</option>
+                  <option value="Seasonal">Seasonal</option>
+                  <option value="Family friendly">Family friendly</option>
+                  <option value="Top rated">Top rated</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="form-section-title">2. Pricing &amp; Capacity</h3>
+            <div class="form-grid">
+              <label>
+                Price per Guest (₹ / night) *
+                <input type="number" id="new-farm-price" min="300" max="50000" step="50" required placeholder="e.g. 2400">
+              </label>
+              <label>
+                Max Guest Capacity *
+                <input type="number" id="new-farm-capacity" min="1" max="50" required placeholder="e.g. 6">
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="form-section-title">3. Cover Photo</h3>
+            <p class="field-hint">Choose an authentic Indian farm photo or provide a custom image URL:</p>
+            <div class="photo-preset-grid">
+              <label class="photo-preset-item selected">
+                <input type="radio" name="farm-photo-preset" value="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=900&q=85" checked onchange="handlePhotoPresetChange(this)">
+                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=400&q=80" alt="Coastal Palms">
+                <span>Coastal Palms (Konkan / Kerala)</span>
+              </label>
+              <label class="photo-preset-item">
+                <input type="radio" name="farm-photo-preset" value="/images/orchard_farmstay.jpg" onchange="handlePhotoPresetChange(this)">
+                <img src="/images/orchard_farmstay.jpg" alt="Mango Orchard">
+                <span>Fruit Orchard (Mango / Apple)</span>
+              </label>
+              <label class="photo-preset-item">
+                <input type="radio" name="farm-photo-preset" value="https://images.unsplash.com/photo-1590682680695-43b964a3ae17?auto=format&fit=crop&w=900&q=85" onchange="handlePhotoPresetChange(this)">
+                <img src="https://images.unsplash.com/photo-1590682680695-43b964a3ae17?auto=format&fit=crop&w=400&q=80" alt="Mountain Foothills">
+                <span>Mountain Foothills (Himalayas / Ghats)</span>
+              </label>
+              <label class="photo-preset-item">
+                <input type="radio" name="farm-photo-preset" value="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=900&q=85" onchange="handlePhotoPresetChange(this)">
+                <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=400&q=80" alt="Vegetable Farm">
+                <span>Organic Farmland &amp; Crops</span>
+              </label>
+            </div>
+            <label style="margin-top: 10px;">
+              Or custom image URL:
+              <input type="url" id="new-farm-custom-img" placeholder="https://images.unsplash.com/..." oninput="handleCustomImgInput(this)">
+            </label>
+          </div>
+
+          <div class="form-section">
+            <h3 class="form-section-title">4. Farm Activities &amp; Highlights</h3>
+            <label>
+              Description &amp; Story *
+              <textarea id="new-farm-desc" rows="3" required placeholder="Describe what guests will experience (e.g. Wake up to misty hills, fresh orchard produce, traditional chulha cooking, and seasonal harvest trails)..."></textarea>
+            </label>
+            <p class="field-hint" style="margin-top: 12px;">Included Seasonal Activities:</p>
+            <div class="activity-checkbox-grid">
+              <label class="activity-checkbox-item">
+                <input type="checkbox" value="Seasonal harvest walk" checked> Seasonal harvest walk
+              </label>
+              <label class="activity-checkbox-item">
+                <input type="checkbox" value="Traditional regional meals" checked> Traditional regional chulha meals
+              </label>
+              <label class="activity-checkbox-item">
+                <input type="checkbox" value="Organic processing / jaggery / honey" checked> Organic processing / jaggery / honey
+              </label>
+              <label class="activity-checkbox-item">
+                <input type="checkbox" value="River / stream / lake dip"> River / stream / lake trail
+              </label>
+              <label class="activity-checkbox-item">
+                <input type="checkbox" value="Tractor or bullock cart tour"> Tractor or bullock cart tour
+              </label>
+              <label class="activity-checkbox-item">
+                <input type="checkbox" value="Stargazing night trail"> Stargazing &amp; nature walk
+              </label>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="outline-btn" onclick="closeAddListingModal()">Cancel</button>
+            <button type="submit" class="primary-btn">
+              <span>✓</span> Publish Listing
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="listing-toast" class="listing-toast" style="display: none;" role="alert">
+      <span class="toast-icon">✓</span>
+      <span id="listing-toast-msg">Listing published successfully!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-brand">
+        <button class="brand" type="button" onclick="showView('home')">
+          <span class="brand-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+            </svg>
+          </span>
+          <span>agri<span>trails</span></span>
+        </button>
+        <p>Good stays. Better livelihoods.</p>
+      </div>
+      <div class="footer-links">
+        <button type="button">Our mission</button>
+        <button type="button">Help centre</button>
+        <button type="button">Privacy</button>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const farmData = [
+      {
+        name: 'Kokan Roots Farmstay',
+        place: 'Ratnagiri, Maharashtra',
+        type: 'Farm stay · Hurda party',
+        price: '₹2,850',
+        rating: '4.9',
+        reviews: '42',
+        image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=900&q=85',
+        tag: 'Top rated'
+      },
+      {
+        name: 'Aamrai Orchard Escape',
+        place: 'Alphonso country, Ratnagiri',
+        type: 'Fruit picking · Orchard',
+        price: '₹1,900',
+        rating: '4.8',
+        reviews: '31',
+        image: '/images/orchard_farmstay.jpg',
+        tag: 'Seasonal'
+      },
+      {
+        name: 'Sahyadri Soil & Soul',
+        place: 'Panchgani, Maharashtra',
+        type: 'Cattle tending · Village lunch',
+        price: '₹1,650',
+        rating: '4.7',
+        reviews: '26',
+        image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=900&q=85',
+        tag: 'New'
+      },
+      {
+        name: 'Whispering Pines Apple Orchard',
+        place: 'Kullu Valley, Himachal Pradesh',
+        type: 'Apple picking · Mountain trail',
+        price: '₹2,400',
+        rating: '4.9',
+        reviews: '38',
+        image: 'https://images.unsplash.com/photo-1590682680695-43b964a3ae17?auto=format&fit=crop&w=900&q=85',
+        tag: 'Mountain stay'
+      },
+      {
+        name: 'Coorg Arabica Coffee Estate',
+        place: 'Madikeri, Karnataka',
+        type: 'Coffee trail · Stream walk',
+        price: '₹3,150',
+        rating: '4.9',
+        reviews: '53',
+        image: 'https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=900&q=85',
+        tag: 'Top rated'
+      },
+      {
+        name: 'Cardamom Hills Spice Haven',
+        place: 'Munnar, Kerala',
+        type: 'Spice trail · Organic tea',
+        price: '₹2,600',
+        rating: '4.8',
+        reviews: '29',
+        image: 'https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?auto=format&fit=crop&w=900&q=85',
+        tag: 'Seasonal'
+      }
+    ];
+
+    let currentView = 'home';
+    let selectedFarmIndex = 0;
+
+    function showView(viewName) {
+      currentView = viewName;
+      document.querySelectorAll('.view-pane').forEach(el => el.hidden = true);
+      const target = document.getElementById('view-' + viewName);
+      if (target) {
+        target.hidden = false;
+      }
+
+      document.querySelectorAll('.nav-item').forEach(btn => {
+        if (btn.getAttribute('data-nav') === viewName) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Close mobile menu if open
+      closeMobileMenu();
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function scrollToElement(id) {
+      if (currentView !== 'home') {
+        showView('home');
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+      closeMobileMenu();
+    }
+
+    // Search Bar Popovers & Interaction
+    function handleWhereLabelClick(event) {
+      if (event.target.id === 'search-where-input') return;
+      const popover = document.getElementById('where-picker-popover');
+      if (!popover) return;
+      const isVisible = popover.style.display === 'flex';
+      closeAllSearchPopovers();
+      if (!isVisible) {
+        popover.style.display = 'flex';
+        const input = document.getElementById('search-where-input');
+        if (input) input.focus();
+      }
+    }
+
+    // Toggle where popover when clicking directly on where input
+    const whereInputEl = document.getElementById('search-where-input');
+    if (whereInputEl) {
+      whereInputEl.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const popover = document.getElementById('where-picker-popover');
+        if (popover) {
+          closeAllSearchPopovers();
+          popover.style.display = 'flex';
+        }
+      });
+    }
+
+    function selectQuickWhere(val, event) {
+      if (event) event.stopPropagation();
+      const input = document.getElementById('search-where-input');
+      if (input) input.value = val;
+      closeAllSearchPopovers();
+    }
+
+    function handleWhenLabelClick(event) {
+      const popover = document.getElementById('when-picker-popover');
+      if (!popover) return;
+      const isVisible = popover.style.display === 'flex';
+      closeAllSearchPopovers();
+      if (!isVisible) {
+        popover.style.display = 'flex';
+      }
+    }
+
+    function selectQuickDate(val, event) {
+      if (event) event.stopPropagation();
+      const input = document.getElementById('search-when-input');
+      if (input) input.value = val;
+      closeAllSearchPopovers();
+    }
+
+    function selectCustomDate(val, event) {
+      if (event) event.stopPropagation();
+      if (!val) return;
+      const d = new Date(val + 'T00:00:00');
+      const formatted = d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+      const input = document.getElementById('search-when-input');
+      if (input) input.value = formatted;
+      closeAllSearchPopovers();
+    }
+
+    function closeAllSearchPopovers() {
+      const p1 = document.getElementById('where-picker-popover');
+      const p2 = document.getElementById('when-picker-popover');
+      if (p1) p1.style.display = 'none';
+      if (p2) p2.style.display = 'none';
+    }
+
+    document.addEventListener('click', function(e) {
+      const whereLabel = document.getElementById('search-where-label');
+      const whenLabel = document.getElementById('search-when-label');
+      if (whereLabel && !whereLabel.contains(e.target) && whenLabel && !whenLabel.contains(e.target)) {
+        closeAllSearchPopovers();
+      }
+    });
+
+    function executeSearch() {
+      closeAllSearchPopovers();
+      const whereVal = (document.getElementById('search-where-input')?.value || '').toLowerCase().trim();
+      const expVal = (document.getElementById('search-experience-select')?.value || '').toLowerCase().trim();
+
+      showView('explore');
+
+      const cards = document.querySelectorAll('#explore-farm-grid .farm-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        let matchesWhere = true;
+        if (whereVal && !whereVal.includes('all across india') && whereVal !== 'all india') {
+          if (whereVal.includes('himachal') || whereVal.includes('north')) {
+            matchesWhere = text.includes('himachal') || text.includes('kullu') || text.includes('mountain');
+          } else if (whereVal.includes('karnataka') || whereVal.includes('coorg')) {
+            matchesWhere = text.includes('karnataka') || text.includes('coorg') || text.includes('madikeri');
+          } else if (whereVal.includes('kerala') || whereVal.includes('munnar')) {
+            matchesWhere = text.includes('kerala') || text.includes('munnar');
+          } else if (whereVal.includes('maharashtra') || whereVal.includes('ratnagiri') || whereVal.includes('panchgani') || whereVal.includes('west')) {
+            matchesWhere = text.includes('maharashtra') || text.includes('ratnagiri') || text.includes('panchgani');
+          } else {
+            const words = whereVal.split(/\s+/).filter(w => w.length > 2);
+            matchesWhere = words.length === 0 || words.some(w => text.includes(w));
+          }
+        }
+
+        let matchesExp = true;
+        if (expVal) {
+          if (expVal.includes('fruit')) {
+            matchesExp = text.includes('fruit') || text.includes('orchard') || text.includes('apple') || text.includes('mango');
+          } else if (expVal.includes('spice')) {
+            matchesExp = text.includes('spice') || text.includes('coffee') || text.includes('tea');
+          } else if (expVal.includes('stay')) {
+            matchesExp = text.includes('farm stay') || text.includes('cottage') || text.includes('cattle');
+          }
+        }
+
+        const show = matchesWhere && matchesExp;
+        card.style.display = show ? 'flex' : 'none';
+        if (show) visibleCount++;
+      });
+
+      const countEl = document.getElementById('explore-result-count');
+      if (countEl) {
+        countEl.textContent = visibleCount;
+      }
+    }
+
+    function filterFarms(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
+      if (btn) btn.classList.add('filter-active');
+
+      const cards = document.querySelectorAll('#explore-farm-grid .farm-card');
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        let show = true;
+        if (category === 'north') {
+          show = text.includes('himachal') || text.includes('kullu') || text.includes('uttarakhand') || text.includes('punjab') || text.includes('kashmir');
+        } else if (category === 'west') {
+          show = text.includes('maharashtra') || text.includes('ratnagiri') || text.includes('panchgani') || text.includes('konkan') || text.includes('gujarat') || text.includes('goa');
+        } else if (category === 'south') {
+          show = text.includes('karnataka') || text.includes('coorg') || text.includes('kerala') || text.includes('munnar') || text.includes('tamil') || text.includes('wayanad');
+        } else if (category === 'budget') {
+          const priceMatch = text.match(/₹([\d,]+)/);
+          if (priceMatch) {
+            const num = parseInt(priceMatch[1].replace(/,/g, ''), 10);
+            show = num <= 2500;
+          }
+        }
+        card.style.display = show ? 'flex' : 'none';
+      });
+    }
+
+    function selectAndBook(index) {
+      selectedFarmIndex = index;
+      const farm = farmData[index] || farmData[0];
+
+      document.getElementById('booking-farm-img').src = farm.image;
+      document.getElementById('booking-farm-img').alt = farm.name;
+      document.getElementById('booking-farm-title').textContent = farm.name;
+      document.getElementById('booking-farm-place').textContent = farm.place;
+      document.getElementById('booking-farm-rating').textContent = farm.rating;
+      document.getElementById('booking-farm-reviews').textContent = farm.reviews;
+      document.getElementById('booking-farm-price').textContent = farm.price;
+
+      // Reset form state
+      document.getElementById('booking-form-content').style.display = 'block';
+      document.getElementById('booking-success-state').style.display = 'none';
+
+      showView('booking');
+    }
+
+    function handleBookingSubmit(event) {
+      event.preventDefault();
+      document.getElementById('booking-form-content').style.display = 'none';
+      document.getElementById('booking-success-state').style.display = 'block';
+    }
+
+    function toggleHeart(btn) {
+      btn.classList.toggle('is-active');
+      const svg = btn.querySelector('svg');
+      if (btn.classList.contains('is-active')) {
+        svg.setAttribute('fill', 'currentColor');
+      } else {
+        svg.setAttribute('fill', 'none');
+      }
+    }
+
+    function alertAdded(name) {
+      const btn = event.currentTarget;
+      const origBg = btn.style.background;
+      btn.style.background = '#beddb5';
+      setTimeout(() => {
+        btn.style.background = origBg;
+      }, 300);
+    }
+
+    // Mobile nav toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mainNav = document.getElementById('main-nav');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    function toggleMobileMenu() {
+      const isOpen = mainNav.classList.toggle('is-open');
+      menuIcon.style.display = isOpen ? 'none' : 'block';
+      closeIcon.style.display = isOpen ? 'block' : 'none';
+    }
+
+    function closeMobileMenu() {
+      if (mainNav.classList.contains('is-open')) {
+        mainNav.classList.remove('is-open');
+        menuIcon.style.display = 'block';
+        closeIcon.style.display = 'none';
+      }
+    }
+
+    mobileToggle.addEventListener('click', toggleMobileMenu);
+
+    // Default check-in date (tomorrow)
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const dateInput = document.getElementById('booking-checkin-date');
+    if (dateInput) {
+      dateInput.value = tomorrow.toISOString().split('T')[0];
+    }
+
+    // Add Listing Modal & Submission logic
+    const addListingModal = document.getElementById('add-listing-modal');
+
+    function openAddListingModal() {
+      if (!addListingModal) return;
+      addListingModal.style.display = 'flex';
+      addListingModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      const firstInput = document.getElementById('new-farm-name');
+      if (firstInput) {
+        setTimeout(() => firstInput.focus(), 80);
+      }
+    }
+
+    function closeAddListingModal() {
+      if (!addListingModal) return;
+      addListingModal.style.display = 'none';
+      addListingModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && addListingModal && addListingModal.style.display === 'flex') {
+        closeAddListingModal();
+      }
+    });
+
+    function handlePhotoPresetChange(radio) {
+      document.querySelectorAll('.photo-preset-item').forEach(item => {
+        item.classList.remove('selected');
+      });
+      if (radio && radio.parentElement) {
+        radio.parentElement.classList.add('selected');
+      }
+      const customInput = document.getElementById('new-farm-custom-img');
+      if (customInput) customInput.value = '';
+    }
+
+    function handleCustomImgInput(input) {
+      if (input.value.trim().length > 0) {
+        document.querySelectorAll('.photo-preset-item').forEach(item => {
+          item.classList.remove('selected');
+          const r = item.querySelector('input[type="radio"]');
+          if (r) r.checked = false;
+        });
+      }
+    }
+
+    let toastTimer = null;
+    function showListingToast(message) {
+      const toast = document.getElementById('listing-toast');
+      const msgEl = document.getElementById('listing-toast-msg');
+      if (!toast || !msgEl) return;
+      msgEl.textContent = message;
+      toast.style.display = 'flex';
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.style.display = 'none';
+      }, 4000);
+    }
+
+    function handleAddListingSubmit(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('new-farm-name').value.trim();
+      const location = document.getElementById('new-farm-location').value;
+      const type = document.getElementById('new-farm-type').value;
+      const tag = document.getElementById('new-farm-tag').value;
+      const priceNum = document.getElementById('new-farm-price').value;
+      const capacity = document.getElementById('new-farm-capacity').value;
+      const customImg = document.getElementById('new-farm-custom-img').value.trim();
+
+      let selectedImg = customImg;
+      if (!selectedImg) {
+        const checkedPreset = document.querySelector('input[name="farm-photo-preset"]:checked');
+        selectedImg = checkedPreset ? checkedPreset.value : '/images/orchard_farmstay.jpg';
+      }
+
+      const formattedPrice = '₹' + Number(priceNum).toLocaleString('en-IN');
+
+      // 1. Add to Farmer Dashboard Active Listings list
+      const listingsList = document.getElementById('dashboard-listings-list');
+      if (listingsList) {
+        const newRow = document.createElement('div');
+        newRow.className = 'listing-row new-listing-row';
+        newRow.innerHTML = `
+          <img src="${selectedImg}" alt="${name}" onerror="this.src='/images/orchard_farmstay.jpg'">
+          <div>
+            <h3>${name}</h3>
+            <p>${location.split(',')[0]} · ${capacity} guests max</p>
+            <span class="status-pill">Published</span>
+          </div>
+          <strong>${formattedPrice}<small>/ guest</small></strong>
+          <button class="icon-only" type="button" aria-label="Edit listing">•••</button>
+        `;
+        listingsList.prepend(newRow);
+      }
+
+      // 2. Add to farmData and prepend card to Explore view
+      const newFarmObj = {
+        name: name,
+        place: location,
+        type: type,
+        price: formattedPrice,
+        rating: '5.0',
+        reviews: '1',
+        image: selectedImg,
+        tag: tag
+      };
+      farmData.unshift(newFarmObj);
+
+      const exploreGrid = document.getElementById('explore-farm-grid');
+      if (exploreGrid) {
+        const newCard = document.createElement('article');
+        newCard.className = 'farm-card';
+        newCard.innerHTML = `
+          <div class="farm-image">
+            <img src="${selectedImg}" alt="${name}" onerror="this.src='/images/orchard_farmstay.jpg'">
+            <span class="image-tag">${tag}</span>
+            <button class="heart-btn" type="button" aria-label="Save ${name}" onclick="toggleHeart(this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+              </svg>
+            </button>
+          </div>
+          <div class="farm-body">
+            <div class="farm-title">
+              <h3>${name}</h3>
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                5.0
+              </span>
+            </div>
+            <p class="muted">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              ${location}
+            </p>
+            <p class="farm-type">${type}</p>
+            <div class="farm-price">
+              <span><strong>${formattedPrice}</strong> / guest</span>
+              <button type="button" onclick="selectAndBook(0)">
+                View stay
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        `;
+        exploreGrid.prepend(newCard);
+      }
+
+      // Close modal and reset form
+      closeAddListingModal();
+      document.getElementById('add-listing-form').reset();
+      const defaultPresetRadio = document.querySelector('input[name="farm-photo-preset"]');
+      if (defaultPresetRadio) {
+        defaultPresetRadio.checked = true;
+        handlePhotoPresetChange(defaultPresetRadio);
+      }
+
+      // Show notification
+      showListingToast(`"${name}" published successfully!`);
+    }
+  </script>
+</body>
+</html>

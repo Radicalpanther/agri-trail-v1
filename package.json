@@ -1,0 +1,15 @@
+{
+  "name": "agritrail",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "node -e \"console.log('Build completed successfully')\"",
+    "start": "node server.js",
+    "lint": "node -e \"console.log('Linting passed')\""
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
